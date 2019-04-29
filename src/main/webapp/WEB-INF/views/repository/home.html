@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-    <p>
+    <h1>List blog</h1>
+    <div>
+        <table border="1">
+            <thead>
+            <tr>
+                <td>Author</td>
+                <td>Description</td>
+                <td>Contain</td>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="blog : ${blogList}" >
+                    <td th:text="${blog.getAuthor()}"></td>
+                    <td th:text="${blog.getDescription()}"></td>
+                    <td th:text="${blog.getContain()}"></td>
 
-    </p>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a th:href="create-blog">Create new blog</a>
+
+
+
 </body>
 </html>
