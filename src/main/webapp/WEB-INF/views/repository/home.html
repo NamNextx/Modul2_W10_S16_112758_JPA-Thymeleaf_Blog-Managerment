@@ -14,6 +14,8 @@
                 <td>Author</td>
                 <td>Description</td>
                 <td>Contain</td>
+                <td>Update</td>
+                <td>Delete</td>
             </tr>
             </thead>
             <tbody>
@@ -21,7 +23,8 @@
                     <td th:text="${blog.getAuthor()}"></td>
                     <td th:text="${blog.getDescription()}"></td>
                     <td th:text="${blog.getContain()}"></td>
-
+                    <td ><a th:href="@{/update_blog/__${blog.id}__}">update</a> </td>
+                    <td> <a th:href="@{/delete_blog/__${blog.id}__}">delete</a> </td>
                 </tr>
             </tbody>
         </table>
