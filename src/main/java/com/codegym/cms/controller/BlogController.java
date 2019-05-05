@@ -53,5 +53,9 @@ public class BlogController {
             return modelAndView;
         }
     }
-
+    @PostMapping("/update_blog")
+    public String updateBlog(@ModelAttribute("abc") Blog blog,RedirectAttributes redirect){
+        iBlogService.save(blog);
+        return ("redirect:/home");
+    }
 }
