@@ -2,10 +2,10 @@ package com.codegym.cms.service.impl.impl;
 
 import com.codegym.cms.model.Category;
 import com.codegym.cms.repository.ICategoryRepository;
-import com.codegym.cms.service.ICategory;
+import com.codegym.cms.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class CategoryServiceImpl implements ICategory {
+public class CategoryServiceImpl implements ICategoryService {
     @Autowired
     ICategoryRepository categoryRepository;
     @Override

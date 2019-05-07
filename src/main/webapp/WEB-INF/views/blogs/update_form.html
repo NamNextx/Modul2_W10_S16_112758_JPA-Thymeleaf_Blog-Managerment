@@ -6,14 +6,16 @@
     <title>Update form</title>
 </head>
 <body>
+<h1>Edit form</h1>
+<a th:href="@{/home}">Back to List</a>
 <form th:action="@{/update_blog}" method="post" th:object="${blog}">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table th:border="1">
         <thead>
         <tr>
             <td>Title</td>
-            <td>Old contain</td>
-            <td>Update</td>
+            <td>Before</td>
+            <td>After</td>
         </tr>
         </thead>
         <tbody>
@@ -36,6 +38,16 @@
             <td th:text="${blog.contain}"></td>
             <td>
                 <input type="text" th:field="*{contain}">
+            </td>
+        </tr>
+
+        <tr>
+            <td>Category</td>
+            <td th:text="${blog.category.getName()}"></td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="p:${categorys}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
             </td>
         </tr>
 

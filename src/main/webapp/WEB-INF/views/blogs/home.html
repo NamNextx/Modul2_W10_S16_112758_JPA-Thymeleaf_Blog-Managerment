@@ -14,15 +14,18 @@
                 <td>Author</td>
                 <td>Description</td>
                 <td>Contain</td>
+                <td>Category</td>
                 <td>Update</td>
                 <td>Delete</td>
             </tr>
             </thead>
             <tbody>
                 <tr th:each="blog : ${blogList}" >
-                    <td th:text="${blog.getAuthor()}"></td>
+
+                    <td th:text="${blog.author}"></td>
                     <td th:text="${blog.getDescription()}"></td>
                     <td th:text="${blog.getContain()}"></td>
+                    <td th:text="${blog.getCategory().getName()}"></td>
                     <td ><a th:href="@{/update_blog/__${blog.id}__}">update</a> </td>
                     <td> <a th:href="@{/delete_blog/__${blog.id}__}">delete</a> </td>
                 </tr>
@@ -31,7 +34,6 @@
     </div>
 
     <a th:href="create-blog">Create new blog</a>
-
 
 
 </body>

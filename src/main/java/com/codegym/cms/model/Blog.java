@@ -13,13 +13,18 @@ public class Blog {
     private String description;
     private String contain;
 
-    public Blog(String author, String description, String contain) {
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public Blog() {
+    }
+
+    public Blog(String author, String description, String contain, Category category) {
         this.author = author;
         this.description = description;
         this.contain = contain;
-    }
-
-    public Blog() {
+        this.category = category;
     }
 
     public Long getId() {
@@ -52,5 +57,14 @@ public class Blog {
 
     public void setContain(String contain) {
         this.contain = contain;
+    }
+
+    public Category getCategory() {
+        Category empty = new Category();
+        return (this.category != null) ? this.category : empty;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
