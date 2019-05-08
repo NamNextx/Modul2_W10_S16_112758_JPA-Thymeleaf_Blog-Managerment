@@ -2,16 +2,21 @@ package com.codegym.cms.controller;
 
 import com.codegym.cms.model.Blog;
 import com.codegym.cms.model.Category;
-import com.codegym.cms.repository.IBlogRepository;
 import com.codegym.cms.service.IBlogService;
 import com.codegym.cms.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Optional;
 
 @Controller
 public class BlogController {
@@ -27,8 +32,13 @@ public class BlogController {
     }
 
     @GetMapping("/home")
-    public ModelAndView home() {
-        Iterable<Blog> blogList=iBlogService.findAll();
+    public ModelAndView listBlog(@RequestParam("s") Optional<String> s,@PageableDefault(4) Pageable pageable) {
+        Page<Blog> blogList;
+        if(s.isPresent()){
+            blogList = iBlogService.findAllByAuthorContaining(s.get(),pageable);
+        }else {
+            blogList = iBlogService.findAll(pageable);
+        }
         ModelAndView modelAndView=new ModelAndView("/blogs/home");
         modelAndView.addObject("blogList",blogList);
         return modelAndView;
